@@ -42,6 +42,8 @@
     _input.returnKeyType = UIReturnKeyDone;
     _input.delegate = self;
     [self.view addSubview:_input];
+    
+    NSLog(@"测试一下");
 }
 
 #pragma mark 输入框代理，点击return 按钮
