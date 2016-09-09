@@ -81,7 +81,7 @@
         CGContextMoveToPoint(context, pX, pY);        //设置线终点
         pX = arc4random() % (int)rect.size.width;
         pY = arc4random() % (int)rect.size.height;
-        CGContextAddLineToPoint(context, pX, pY);        //画线
+        CGContextAddLineToPoint(context, pX, pY);     //画线
         CGContextStrokePath(context);
     }
 }
