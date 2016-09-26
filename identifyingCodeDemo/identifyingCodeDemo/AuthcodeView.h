@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface AuthcodeView : UIView
-@property (nonatomic,strong) NSArray *dataArray;
+
 @property (nonatomic,strong) NSMutableString *authCodeStr;
+
+
 @end

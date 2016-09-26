@@ -410,6 +410,7 @@
 				D169B3E11D7EB9A000A4430C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D169B3E21D7EB9A000A4430C /* Build configuration list for PBXNativeTarget "identifyingCodeDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -418,6 +419,7 @@
 				D169B3E41D7EB9A000A4430C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

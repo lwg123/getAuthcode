@@ -13,7 +13,9 @@
 {
     AuthcodeView *authCodeView;
     UITextField *_input;
+    
 }
+
 
 @end
 
@@ -49,7 +51,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     //判断输入的是否为验证图片中显示的验证码
-    if ([_input.text isEqualToString:authCodeView.authCodeStr]) {
+    if ([_input.text caseInsensitiveCompare:authCodeView.authCodeStr] == NSOrderedSame) {
         //正确弹出警告款提示正确
         UIAlertView *alview = [[UIAlertView alloc] initWithTitle:@"恭喜您 ^o^" message:@"验证成功" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alview show];

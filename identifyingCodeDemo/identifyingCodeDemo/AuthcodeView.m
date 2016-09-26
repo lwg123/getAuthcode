@@ -6,13 +6,21 @@
 //  Copyright © 2016年 weiguang. All rights reserved.
 //
 
-#import "AuthcodeView.h"
-
-#define kRandomColor  [UIColor colorWithRed:arc4random() % 256 / 256.0 green:arc4random() % 256 / 256.0 blue:arc4random() % 256 / 256.0 alpha:1.0];
+#define kRandomColor  [UIColor colorWithRed:arc4random() % 256 / 256.0 green:arc4random() % 256 / 256.0 blue:arc4random() % 256 / 256.0 alpha:1.0]
 #define kLineCount 6
 #define kLineWidth 1.0
 #define kCharCount 6
-#define kFontSize [UIFont systemFontOfSize:arc4random() % 5 + 15]
+#define kFontSize [UIFont systemFontOfSize:arc4random() % 10 + 15]
+#define kAngel arc4random() % 1 + 15
+
+#import "AuthcodeView.h"
+
+@interface AuthcodeView()
+
+@property (nonatomic,strong) NSArray *dataArray;
+
+@end
+
 
 @implementation AuthcodeView
 
@@ -22,7 +30,7 @@
         self.layer.cornerRadius = 5.0f;
         self.layer.masksToBounds = YES;
         self.backgroundColor = kRandomColor;
-        [self getAuthcode];//获得随机验证码
+        [self getAuthcode]; //获得随机验证码
     }
     return self;
 }
@@ -42,8 +50,11 @@
 #pragma mark 点击界面切换验证码
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UIView *view in self.subviews) {
+        [view removeFromSuperview];
+    }
     [self getAuthcode];
-    [self setNeedsDisplay];  //setNeedsDisplay调用drawRect方法来实现view的绘制
+    [self setNeedsDisplay];       //setNeedsDisplay调用drawRect方法来实现view的绘制
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -52,7 +63,7 @@
     self.backgroundColor = kRandomColor;  //设置随机背景颜色
     NSString *text = [NSString stringWithFormat:@"%@",_authCodeStr];
     //根据要显示的验证码字符串，根据长度，计算每个字符串显示的位置
-    CGSize cSize = [@"A" sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]}];
+    CGSize cSize = [@"A" sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:25]}];
     
     int width = rect.size.width/text.length - cSize.width;
     int height = rect.size.height - cSize.height;
@@ -66,13 +77,27 @@
         point = CGPointMake(pX, pY);
         unichar c = [text characterAtIndex:i];
         NSString *textC = [NSString stringWithFormat:@"%C", c];
-        [textC drawAtPoint:point withAttributes:@{NSFontAttributeName:kFontSize}];
+        UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(pX, pY, cSize.width, cSize.height)];
+        tempLabel.backgroundColor = [UIColor clearColor];
+        tempLabel.textColor = kRandomColor;
+        tempLabel.text = textC;
+        tempLabel.font = kFontSize;
+        float random = (1+arc4random()%99)/100.0;
+        float random1 = [self getRandomNumber:-100 to:100]/100.0;
+        //NSLog(@"%f,%f",random,random1);
+        tempLabel.transform = CGAffineTransformMakeRotation(random1);
+        [self addSubview:tempLabel];
+        
+        //直接把文字画出来的方法
+        //NSDictionary * dic = @{NSFontAttributeName:kFontSize,
+//                               NSForegroundColorAttributeName:kRandomColor};
+        //[textC drawAtPoint:point withAttributes:dic];
     }
     
     //调用drawRect：之前，系统会向栈中压入一个CGContextRef，调用UIGraphicsGetCurrentContext()会取栈顶的CGContextRef
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, kLineWidth);  //设置线条宽度
-    for (int i = 0; i < kLineCount; i++)     {   //绘制干扰线
+    for (int i = 0; i < kLineCount; i++) {       //绘制干扰线
         UIColor *color = kRandomColor;
         CGContextSetStrokeColorWithColor(context, color.CGColor);//设置线条填充色
         //设置线的起点
@@ -84,6 +109,11 @@
         CGContextAddLineToPoint(context, pX, pY);     //画线
         CGContextStrokePath(context);
     }
+}
+
+-(int)getRandomNumber:(int)from to:(int)to
+{
+    return (int)(from + (arc4random() % (to - from + 1)));
 }
 
 @end
