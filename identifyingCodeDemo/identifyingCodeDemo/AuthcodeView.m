@@ -82,10 +82,9 @@
         tempLabel.textColor = kRandomColor;
         tempLabel.text = textC;
         tempLabel.font = kFontSize;
-        float random = (1+arc4random()%99)/100.0;
-        float random1 = [self getRandomNumber:-100 to:100]/100.0;
-        //NSLog(@"%f,%f",random,random1);
-        tempLabel.transform = CGAffineTransformMakeRotation(random1);
+        float random = [self getRandomNumber:-100 to:100]/100.0;
+        
+        tempLabel.transform = CGAffineTransformMakeRotation(random);
         [self addSubview:tempLabel];
         
         //直接把文字画出来的方法
