@@ -45,6 +45,7 @@
         NSString *tempStr = [_dataArray objectAtIndex:index];
         _authCodeStr = (NSMutableString *)[_authCodeStr stringByAppendingString:tempStr];
     }
+   // NSLog(@"_authCodeStr = %@",_authCodeStr);
 }
 
 #pragma mark 点击界面切换验证码
@@ -63,7 +64,7 @@
     self.backgroundColor = kRandomColor;  //设置随机背景颜色
     NSString *text = [NSString stringWithFormat:@"%@",_authCodeStr];
     //根据要显示的验证码字符串，根据长度，计算每个字符串显示的位置
-    CGSize cSize = [@"A" sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:25]}];
+    CGSize cSize = [@"W" sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:25]}];
     
     int width = rect.size.width/text.length - cSize.width;
     int height = rect.size.height - cSize.height;
@@ -82,10 +83,11 @@
         tempLabel.textColor = kRandomColor;
         tempLabel.text = textC;
         tempLabel.font = kFontSize;
+        [self addSubview:tempLabel];
         float random = [self getRandomNumber:-100 to:100]/100.0;
         
         tempLabel.transform = CGAffineTransformMakeRotation(random);
-        [self addSubview:tempLabel];
+        
         
         //直接把文字画出来的方法
         //NSDictionary * dic = @{NSFontAttributeName:kFontSize,
