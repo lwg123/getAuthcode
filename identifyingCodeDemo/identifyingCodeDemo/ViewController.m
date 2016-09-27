@@ -66,6 +66,7 @@
     }
     return YES;
 }
+
 #pragma mark 警告框中方法
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     //清空输入框内容，收回键盘
@@ -74,7 +75,5 @@
         [_input resignFirstResponder];
     }
 }
-
-
 
 @end

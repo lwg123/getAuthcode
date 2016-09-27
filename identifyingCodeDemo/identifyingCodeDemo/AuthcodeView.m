@@ -45,7 +45,6 @@
         NSString *tempStr = [_dataArray objectAtIndex:index];
         _authCodeStr = (NSMutableString *)[_authCodeStr stringByAppendingString:tempStr];
     }
-   // NSLog(@"_authCodeStr = %@",_authCodeStr);
 }
 
 #pragma mark 点击界面切换验证码
