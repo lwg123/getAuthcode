@@ -11,7 +11,7 @@
 #define kLineWidth 1.0
 #define kCharCount 6
 #define kFontSize [UIFont systemFontOfSize:arc4random() % 10 + 15]
-#define kAngel arc4random() % 1 + 15
+
 
 #import "AuthcodeView.h"
 
@@ -83,11 +83,10 @@
         tempLabel.textColor = kRandomColor;
         tempLabel.text = textC;
         tempLabel.font = kFontSize;
-        [self addSubview:tempLabel];
+        
         float random = [self getRandomNumber:-100 to:100]/100.0;
-        
         tempLabel.transform = CGAffineTransformMakeRotation(random);
-        
+        [self addSubview:tempLabel];
         
         //直接把文字画出来的方法
         //NSDictionary * dic = @{NSFontAttributeName:kFontSize,

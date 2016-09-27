@@ -25,7 +25,8 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];    //显示验证码界面
-    authCodeView = [[AuthcodeView alloc] initWithFrame:CGRectMake(30, 100, self.view.frame.size.width-60, 40)];
+    
+    authCodeView = [[AuthcodeView alloc] initWithFrame:CGRectMake(30, 110, self.view.frame.size.width-60, 40)];
     [self.view addSubview:authCodeView];    //提示文字
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 160, self.view.frame.size.width-100, 40)];
     label.text = @"点击图片换验证码";
